@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+  </div>
+  <div class="col-6">
+    <h4>Contact: <%= @contact.first_name + " " + @contact.last_name %></h4>
+    <a href="/"> Back to all contacts </a>
+    <p>Phone Number: <%= @contact.phone_number %></p>
+    <p>About: <%= @contact.bio %></p>
+    <p><%= link_to "Edit this Contact", "/contacts/#{@contact.id}/edit", method: :get %></p>
+    <p><%= link_to "Destroy this contact", "/contacts/#{@contact.id}", method: :delete %></p>
+  </div>
+  <div class="col">
+  </div>
+  </div>
+    
