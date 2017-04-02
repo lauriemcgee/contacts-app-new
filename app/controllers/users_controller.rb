@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       password_confirmation: params[:password_confirmation]
       )
     if user.save
-      session[:user_id] = user.user_id
+      session[:user_id] = user.id
       flash[:success] = "Welcome to the club!"
       redirect_to "/"
     else

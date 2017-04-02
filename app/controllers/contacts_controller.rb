@@ -14,6 +14,7 @@ class ContactsController < ApplicationController
     render "show.html.erb"
   end
   def new
+    @contact = Contact.new
     render "new.html.erb"
   end
   def create
@@ -31,21 +32,25 @@ class ContactsController < ApplicationController
   end
   
   def edit
-    @contact = contac.find_by(id: params[:id]
+    @contact = contact.find_by(id: params[:id]
     render "edit.html.erb"
   end
   def update
     @contact = Contact.find_by(id: params[:id])
-    @contact.update(
-      first_name: params[:first_name],
-      middle_name: params[:middle_name],
-      last_name: params[:last_name],
-      bio: params[:bio],
-      phone_number: params[:phone_number],
-      email: params[:email]
-      )
-    flash[:success] = "You did it!"
-    redirect_to "/contacts/#{@contact.id}"
+    if @contact.update(
+        first_name: params[:first_name],
+        middle_name: params[:middle_name],
+        last_name: params[:last_name],
+        bio: params[:bio],
+        phone_number: params[:phone_number],
+        email: params[:email],
+        user_id: current_user.id
+        )
+      flash[:success] = "You did it!"
+      redirect_to "/contacts/#{@contact.id}"
+    else
+      render "edit.html.erb"
+    end
   end
   def destroy
     @contact = Contact.find_by(id: params[:id])
