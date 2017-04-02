@@ -1,10 +1,19 @@
 class ContactsController < ApplicationController
   def index
-    @contacts = current_user.contact 
-    return "index.html.erb"
+    if current_user
+      @contacts = current_user.contacts
+      render "index.html.erb"
+    else
+      flash[:warning] = "You gotta log in!"
+      redirect_to "/login"
+  end
+  def show
+    contact_id = params[:id]
+    @contact = Contact.find_by(id: contact_id)
+    render "show.html.erb"
   end
   def new
-    return "new.html.erb"
+    render "new.html.erb"
   end
   def create
     @contact = Contact.create(
@@ -16,20 +25,31 @@ class ContactsController < ApplicationController
         email: params[:email],
         user_id: current_user.id
       )
-    return "create.html.erb"
+    flash[:success] = "You did it!"
+    redirect_to "/contacts/#{@contact.id}"
   end
-  def show
-    contact_id = params[:id]
-    @contact = Contact.find_by(id: contact_id)
-    return "show.html.erb"
-  end
+  
   def edit
-    return "edit.html.erb"
+    @contact = contac.find_by(id: params[:id]
+    render "edit.html.erb"
   end
   def update
-    return "update.html.erb"
+    @contact = Contact.find_by(id: params[:id])
+    @contact.update(
+      first_name: params[:first_name],
+      middle_name: params[:middle_name],
+      last_name: params[:last_name],
+      bio: params[:bio],
+      phone_number: params[:phone_number],
+      email: params[:email]
+      )
+    flash[:success] = "You did it!"
+    redirect_to "/contacts/#{@contact.id}"
   end
   def destroy
-    return "destroy.html.erb"
+    @contact = Contact.find_by(id: params[:id])
+    @contact.destroy
+    flash[:success] = "s/he gone"
+    redirect_to "/"
   end
 end
