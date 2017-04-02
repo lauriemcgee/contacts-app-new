@@ -6,6 +6,7 @@ class ContactsController < ApplicationController
     else
       flash[:warning] = "You gotta log in!"
       redirect_to "/login"
+    end
   end
   def show
     contact_id = params[:id]

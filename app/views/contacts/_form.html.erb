@@ -1,0 +1,41 @@
+<% if @contact.errors.any? %>
+  <div id="error_explanation">
+    <h4><%= pluralize(@contact.errors.count, "error") %>
+    Prohibited this contact from being saved: </h4>
+
+    <ul> 
+    <% @contact.errors.full_messages.each do |msg| %>
+    <li><%= msg %> </li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_tag url, method: :verb do %>
+  <div>
+    <%= label_tag %>
+    <input type="text" name="first_name" value="<%=@contact.first_name%>">
+  </div>
+  <div>
+    <%= label_tag %>
+    <input type="text" name="middle_name" value="<%=@contact.middle_name%>">
+  </div>
+  <div>
+    <%= label_tag %>
+    <input type="text" name="last_name" value="<%=@contact.last_name%>">
+  </div>
+  <div>
+    <%= label_tag %>
+    <input type="text" name="bio" value="<%=@contact.bio%>">
+  </div>
+  <div>
+    <%= label_tag %>
+    <input type="text" name="phone_number" value="<%=@contact.phone_number%>">
+  </div>
+  <div>
+    <%= label_tag %>
+    <input type="text" name="email" value="<%=@contact.email%>">
+  </div>
+
+<%= submit_tag %>
+<% end %>
