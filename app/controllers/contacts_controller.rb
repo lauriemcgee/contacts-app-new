@@ -23,7 +23,7 @@ class ContactsController < ApplicationController
         middle_name: params[:middle_name],
         last_name: params[:last_name],
         bio: params[:bio],
-        phone_number: params[:phone_number,
+        phone_number: params[:phone_number],
         email: params[:email],
         user_id: current_user.id
       )
@@ -32,7 +32,7 @@ class ContactsController < ApplicationController
   end
   
   def edit
-    @contact = contact.find_by(id: params[:id]
+    @contact = contact.find_by(id: params[:id])
     render "edit.html.erb"
   end
   def update

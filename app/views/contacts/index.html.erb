@@ -1,18 +1,9 @@
-<% if current_user %>
     <div class="jumbotron">
-      <h6> Hi! <%= current_user.name %>!</h6>
-      <p>Wanna buy some products?</p>
-      <p><a class="btn btn-primary btn-lg" href="/signup" role="button">All Products</a></p>
-      <p><a class="btn btn-primary btn-lg" href="/login" role="button">My Products</a></p>
-    </div>
-  <% else %> 
-    <div class="jumbotron">
-        <h6> We've Got Products!</h6>
-      <p>Wanna buy some products?</p>
-      <p><a class="btn btn-primary btn-lg" href="/signup" role="button">Sign-up!</a></p>
-      <p><a class="btn btn-primary btn-lg" href="/login" role="button">Log in!</a></p>
-    </div>
-  <% end %>
+      <h6> Hi! <%= current_user.first_name %>!</h6>
+      <p>Contakt</p>
+      <p><a class="btn btn-primary btn-lg" href="/contacts/new" role="button">Add Contact</a></p>
+      <p><a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a></p>
+    </div>  
 
 <% @contacts.each do |contact| %>
   <div class="container">

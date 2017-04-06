@@ -4,7 +4,8 @@ class Contact < ApplicationRecord
   validates :last_name, presence: true
   validates :email, uniqueness: true
 
-  belongs_to :user, uniqueness: true
+  belongs_to :user, optional: true
+
   def japan_phone_number
     "+81 #{phone}"
   end
